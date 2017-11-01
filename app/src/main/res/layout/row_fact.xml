@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical">
+
+    <android.support.v7.widget.CardView
+        android:id="@+id/cardView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/spacingMedium"
+        android:clickable="true"
+        android:focusable="true"
+        android:elevation="@dimen/cardViewElevation"
+        android:stateListAnimator="@anim/button_elevation"
+        android:foreground="?attr/selectableItemBackground"
+        card_view:cardCornerRadius="@dimen/cardViewRadius">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@android:color/white"
+            android:gravity="center_vertical"
+            android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/imViewShare"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:src="@android:drawable/ic_menu_share"
+                android:layout_alignParentEnd="true"
+                android:padding="@dimen/spacingMedium"
+                android:layout_centerVertical="true"
+                android:clickable="true"
+                android:focusable="true"
+                android:foreground="?attr/selectableItemBackground"
+                tools:ignore="ContentDescription" />
+
+            <TextView
+                android:id="@+id/txtIndex"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_toStartOf="@+id/imViewShare"
+                android:maxLines="1"
+                android:textColor="@color/colorAccent"
+                android:textSize="16sp"
+                android:layout_margin="@dimen/spacingSmall"
+                tools:text="1" />
+
+            <TextView
+                android:id="@+id/txtCatFact"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_toStartOf="@+id/imViewShare"
+                android:layout_below="@+id/txtIndex"
+                android:textColor="@android:color/tertiary_text_dark"
+                android:textSize="15sp"
+                android:layout_margin="@dimen/spacingSmall"
+                tools:text="The fact about the cat. The fact about the cat. The fact about the cat." />
+
+            <TextView
+                android:id="@+id/txtLength"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/txtCatFact"
+                android:layout_toStartOf="@+id/imViewShare"
+                android:maxLines="1"
+                android:textColor="@android:color/tertiary_text_dark"
+                android:textSize="12sp"
+                android:layout_margin="@dimen/spacingSmall"
+                tools:text="Fact Length" />
+        </RelativeLayout>
+    </android.support.v7.widget.CardView>
+</LinearLayout>
