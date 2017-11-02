@@ -13,11 +13,11 @@ import com.idirin.catfactstask.event.ShareClickedEvent;
 import com.idirin.catfactstask.ui.adapters.FactAdapter;
 import com.idirin.catfactstask.ui.fragments.BaseFragment;
 import com.idirin.catfactstask.ui.listeners.EndlessScrollListener;
+import com.idirin.catfactstask.util.TestUtil;
 import com.squareup.otto.Subscribe;
 import com.xw.repo.BubbleSeekBar;
 
 import butterknife.BindView;
-
 
 public class FactsFragment extends BaseFragment implements FactsMvp.ViewOps {
 
@@ -133,14 +133,20 @@ public class FactsFragment extends BaseFragment implements FactsMvp.ViewOps {
     BubbleSeekBar.OnProgressChangedListener progressChangedListener = new BubbleSeekBar.OnProgressChangedListener() {
         @Override
         public void onProgressChanged(BubbleSeekBar bubbleSeekBar, int progress, float progressFloat) {
-
+            if (TestUtil.isRunningEspressoTest()) {
+                mPresenter.resetFacts();
+                notifyDataSetChanged();
+                mPresenter.loadFacts(true, seekBar.getProgress());
+            }
         }
 
         @Override
         public void getProgressOnActionUp(BubbleSeekBar bubbleSeekBar, int progress, float progressFloat) {
-            mPresenter.resetFacts();
-            notifyDataSetChanged();
-            mPresenter.loadFacts(true, seekBar.getProgress());
+            if (!TestUtil.isRunningEspressoTest()) {
+                mPresenter.resetFacts();
+                notifyDataSetChanged();
+                mPresenter.loadFacts(true, seekBar.getProgress());
+            }
         }
 
         @Override
