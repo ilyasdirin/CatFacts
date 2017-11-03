@@ -28,6 +28,7 @@ public class FactsModel implements FactsMvp.ModelOps {
     public void onDestroy() {
         facts.clear();
         facts = null;
+        totalFactCount = -1;
     }
 
     @Override
@@ -39,6 +40,7 @@ public class FactsModel implements FactsMvp.ModelOps {
     public void resetFacts() {
         facts.clear();
         facts = new ArrayList<>();
+        totalFactCount = -1;
     }
 
     @Override

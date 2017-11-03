@@ -1,0 +1,10 @@
+{
+    "total": 59,
+    "per_page": "20",
+    "current_page": 2,
+    "last_page": 3,
+    "next_page_url": "https://catfact.ninja/facts?page=3",
+    "prev_page_url": "https://catfact.ninja/facts?page=1",
+    "from": 21,
+    "to": 40
+}

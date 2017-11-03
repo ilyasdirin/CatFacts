@@ -3,6 +3,7 @@ package com.idirin.catfactstask.ui.mvp.facts;
 import android.app.Application;
 import android.content.Context;
 import android.content.Intent;
+import android.support.annotation.VisibleForTesting;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -178,6 +179,14 @@ public class FactsPresenter implements FactsMvp.ViewPresenterOps, FactsMvp.Model
     @Override
     public void resetFacts() {
         mModel.resetFacts();
+    }
+
+
+
+
+    @VisibleForTesting
+    public FactsPresenter(FactsMvp.ViewOps view, boolean isTesting) {
+        mView = new WeakReference<>(view);
     }
 
 }

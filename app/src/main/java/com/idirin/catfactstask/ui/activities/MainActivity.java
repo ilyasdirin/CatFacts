@@ -1,5 +1,7 @@
 package com.idirin.catfactstask.ui.activities;
 
+import android.support.v7.app.ActionBar;
+
 import com.idirin.catfactstask.R;
 import com.idirin.catfactstask.ui.mvp.facts.FactsFragment;
 
@@ -23,6 +25,11 @@ public class MainActivity extends BaseActivity {
 
     @Override
     public void init() {
+        ActionBar actionBar = getSupportActionBar();
+        if (actionBar != null) {
+            actionBar.setDisplayHomeAsUpEnabled(true);
+            actionBar.setHomeAsUpIndicator(getResources().getDrawable(R.mipmap.ic_launcher_round));
+        }
         replaceFragment(R.id.frameLayout, new FactsFragment());
     }
 
