@@ -47,6 +47,9 @@ public interface FactsMvp {
         void bindViewHolder(FactHolder holder, int position);
         void share(int position);
         void resetFacts();
+
+        FactsState getState(int progress);
+        void setState(FactsState state);
     }
 
     /**
@@ -70,6 +73,7 @@ public interface FactsMvp {
         FactModel getFact(int position);
         void resetFacts();
         void appendFacts(@NonNull FactResponse response);
+        void setState(FactsState state);
         int getTotalFactsCount();
     }
 

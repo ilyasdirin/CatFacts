@@ -1,5 +1,8 @@
 apply plugin: 'com.android.application'
 
+repositories {
+    maven {url "https://clojars.org/repo/"}
+}
 android {
     compileSdkVersion rootProject.ext.targetSdkVersion
     buildToolsVersion rootProject.ext.buildToolsVersion
@@ -75,7 +78,6 @@ dependencies {
     debugCompile "com.squareup.leakcanary:leakcanary-android:$rootProject.ext.leakCanary"
     releaseCompile "com.squareup.leakcanary:leakcanary-android-no-op:$rootProject.ext.leakCanary"
 
-
     compile 'com.xw.repo:bubbleseekbar:3.8-lite'
 
     //Test Dependencies
@@ -104,9 +106,9 @@ dependencies {
     }
 
     //Power Mock
-    testCompile 'org.powermock:powermock-core:1.6.1'
-    testCompile 'org.powermock:powermock-api-mockito:1.6.1'
-    testCompile 'org.powermock:powermock-module-junit4:1.6.1'
+    testCompile "org.powermock:powermock-core:$rootProject.ext.powerMock"
+    testCompile "org.powermock:powermock-api-mockito:$rootProject.ext.powerMock"
+    testCompile "org.powermock:powermock-module-junit4:$rootProject.ext.powerMock"
 
 }
 

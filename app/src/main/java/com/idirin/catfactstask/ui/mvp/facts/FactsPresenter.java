@@ -181,8 +181,16 @@ public class FactsPresenter implements FactsMvp.ViewPresenterOps, FactsMvp.Model
         mModel.resetFacts();
     }
 
+    @Override
+    public FactsState getState(int progress) {
+        return new FactsState(progress, mModel.getTotalFactsCount(), mModel.getFacts(), pageNum);
+    }
 
-
+    @Override
+    public void setState(FactsState state) {
+        pageNum = state.getPaging();
+        mModel.setState(state);
+    }
 
     @VisibleForTesting
     public FactsPresenter(FactsMvp.ViewOps view, boolean isTesting) {

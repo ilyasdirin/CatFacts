@@ -1,5 +1,8 @@
 package com.idirin.catfactstask.service.models;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
@@ -8,7 +11,7 @@ import com.google.gson.annotations.SerializedName;
  * idirin on 01/11/2017...
  */
 
-public class FactModel {
+public class FactModel implements Parcelable {
 
     @SerializedName("fact")
     @Expose
@@ -32,4 +35,33 @@ public class FactModel {
     public void setLength(Integer length) {
         this.length = length;
     }
+
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel parcel, int i) {
+        parcel.writeString(fact);
+        parcel.writeInt(length);
+    }
+
+    public static final Parcelable.Creator<FactModel> CREATOR = new Parcelable.Creator<FactModel>() {
+        public FactModel createFromParcel(Parcel in) {
+            return new FactModel(in);
+        }
+
+        public FactModel[] newArray(int size) {
+            return new FactModel[size];
+        }
+    };
+
+    private FactModel(Parcel in) {
+        fact = in.readString();
+        length = in.readInt();
+    }
+
+
 }

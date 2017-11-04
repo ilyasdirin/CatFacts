@@ -63,4 +63,11 @@ public class FactsModel implements FactsMvp.ModelOps {
     public int getTotalFactsCount() {
         return totalFactCount;
     }
+
+    @Override
+    public void setState(FactsState state) {
+        this.facts = state.getFacts();
+        this.totalFactCount = state.getTotalFactCount();
+    }
+
 }

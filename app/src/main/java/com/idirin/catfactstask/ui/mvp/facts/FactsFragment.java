@@ -1,7 +1,9 @@
 package com.idirin.catfactstask.ui.mvp.facts;
 
 import android.content.Context;
+import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -35,8 +37,19 @@ public class FactsFragment extends BaseFragment implements FactsMvp.ViewOps {
     private FactAdapter factAdapter;
     private LinearLayoutManager linearLayoutManager;
 
+    private FactsState factsState;
+
 
     /* Abstract Methods */
+
+    @Override
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        if (savedInstanceState != null) {
+            factsState = savedInstanceState.getParcelable("factsState");
+        }
+        super.onActivityCreated(savedInstanceState);
+    }
+
     @Override
     protected int getLayoutResId() {
         return R.layout.fragment_facts;
@@ -51,8 +64,19 @@ public class FactsFragment extends BaseFragment implements FactsMvp.ViewOps {
     protected void init() {
         setupMvp();
         setupViews();
+        if (factsState != null) {
+            seekBar.setProgress(factsState.getProgress());
+            mPresenter.setState(factsState);
+            setFactCount(factsState.getTotalFactCount());
+        }
     }
 
+    @Override
+    public void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        factsState = mPresenter.getState(seekBar.getProgress());
+        outState.putParcelable("factsState", factsState);
+    }
 
 
 

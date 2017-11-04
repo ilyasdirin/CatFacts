@@ -32,7 +32,9 @@ public abstract class BaseActivity extends AppCompatActivity {
 
         setTitle(getTitleResId());
 
-        init();
+        if (savedInstanceState == null) {
+            init();
+        }
     }
 
 
